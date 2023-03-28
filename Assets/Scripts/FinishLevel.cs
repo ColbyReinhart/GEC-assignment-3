@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FinishLevel : MonoBehaviour
 {
@@ -10,9 +12,17 @@ public class FinishLevel : MonoBehaviour
     public GameObject timeLeft;
     public GameObject theScore;
     public GameObject totalScore;
+    public int timeCalc;
+    public int scoreCalc;
+    public int totalScored;
 
     void OnTriggerEnter()
     {
+        timeLeft.GetComponent<TMP_Text>().text = "Time left: " + GlobalTimer.extendScore + " x 100";
+        theScore.GetComponent<TMP_Text>().text = "Score: " + GlobalScore.currentScore;
+        int timeCalc = GlobalTimer.extendScore * 100;
+        totalScored = GlobalScore.currentScore + timeCalc;
+        totalScore.GetComponent<TMP_Text>().text = "Total score: " + totalScored;
         levelMusic.SetActive(false);
         levelTimer.SetActive(false);
         levelComplete.Play();

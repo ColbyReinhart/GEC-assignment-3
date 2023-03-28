@@ -21,6 +21,6 @@ public class LevelDeath : MonoBehaviour
         yield return new WaitForSeconds(3f);
         fadeOut.SetActive(true);
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Scenes/RedirectLevel");
     }
 }
