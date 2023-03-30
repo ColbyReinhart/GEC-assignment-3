@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FinishLevel : MonoBehaviour
@@ -18,6 +19,8 @@ public class FinishLevel : MonoBehaviour
     public int scoreCalc;
     public int totalScored;
 
+    public int nextLevel = 2;
+
     void OnTriggerEnter()
     {
         movementBlocker.SetActive(true);
@@ -30,6 +33,7 @@ public class FinishLevel : MonoBehaviour
         levelMusic.SetActive(false);
         levelTimer.SetActive(false);
         levelComplete.Play();
+        GlobalScore.currentScore = 0;
         StartCoroutine(CalculateScore());
     }
 
@@ -42,5 +46,7 @@ public class FinishLevel : MonoBehaviour
         totalScore.SetActive(true);
         yield return new WaitForSeconds(2f);
         fadeOut.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Scenes/Level" + nextLevel);
     }
 }
