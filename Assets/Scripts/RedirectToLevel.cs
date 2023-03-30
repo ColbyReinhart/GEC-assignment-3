@@ -7,6 +7,6 @@ public class RedirectToLevel : MonoBehaviour
 {
     void Update()
     {
-        SceneManager.LoadScene("Scenes/SampleScene");
+        SceneManager.LoadScene("Scenes/Level1");
     }
 }

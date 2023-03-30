@@ -30,6 +30,7 @@ public class FinishLevel : MonoBehaviour
         int timeCalc = GlobalTimer.extendScore * 100;
         totalScored = GlobalScore.currentScore + timeCalc;
         totalScore.GetComponent<TMP_Text>().text = "Total score: " + totalScored;
+        PlayerPrefs.SetInt("LevelScore", totalScored);
         levelMusic.SetActive(false);
         levelTimer.SetActive(false);
         levelComplete.Play();
