@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
     public bool paused = false;
     public AudioSource levelMusic;
     public GameObject pauseMenu;
+    public AudioSource pauseJingle;
 
     void Update()
     {
@@ -14,6 +16,7 @@ public class PauseGame : MonoBehaviour
         {
             if (!paused)
             {
+                pauseJingle.Play();
                 Time.timeScale = 0.0f;
                 paused = true;
                 Cursor.visible = true;
@@ -22,12 +25,30 @@ public class PauseGame : MonoBehaviour
             }
             else
             {
-                Time.timeScale = 1.0f;
-                paused = false;
-                Cursor.visible = false;
-                levelMusic.UnPause();
-                pauseMenu.SetActive(false);
+                ResumeGame();
             }
         }
+    }
+
+    public void RestartLevel()
+    {
+        ResumeGame();
+        SceneManager.LoadScene("Scenes/RedirectLevel");
+    }
+
+    public void QuitToMenu()
+    {
+        Time.timeScale = 1.0f;
+        Cursor.visible = true;
+        SceneManager.LoadScene("Scenes/MainMenu");
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1.0f;
+        paused = false;
+        Cursor.visible = false;
+        levelMusic.UnPause();
+        pauseMenu.SetActive(false);
     }
 }

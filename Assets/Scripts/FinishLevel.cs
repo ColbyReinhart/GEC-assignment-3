@@ -13,6 +13,7 @@ public class FinishLevel : MonoBehaviour
     public GameObject theScore;
     public GameObject totalScore;
     public GameObject movementBlocker;
+    public GameObject fadeOut;
     public int timeCalc;
     public int scoreCalc;
     public int totalScored;
@@ -39,6 +40,7 @@ public class FinishLevel : MonoBehaviour
         theScore.SetActive(true);
         yield return new WaitForSeconds(1f);
         totalScore.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+        fadeOut.SetActive(true);
     }
 }
